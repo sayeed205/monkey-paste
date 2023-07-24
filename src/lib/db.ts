@@ -7,7 +7,7 @@ import mongoose, { Connection } from 'mongoose';
 
 import { env } from '@/env.mjs';
 
-const DATABASE_URL = env.DATABASE_URL;
+const MONGODB_URI = env.MONGODB_URI;
 
 declare global {
     // eslint-disable-next-line no-var
@@ -36,7 +36,7 @@ async function db() {
     }
 
     if (!cached.promise) {
-        cached.promise = mongoose.connect(DATABASE_URL).then((mongoose) => {
+        cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
             return mongoose.connection;
         });
     }
@@ -44,7 +44,7 @@ async function db() {
     return cached.conn;
 }
 
-if (!process.env.DATABASE_URL) {
+if (!process.env.MONGODB_URI) {
     throw new Error('Please add your Mongo URI to .env.local');
 }
 
@@ -55,14 +55,14 @@ if (process.env.NODE_ENV === 'development') {
     // In development mode, use a global variable so that the value
     // is preserved across module reloads caused by HMR (Hot Module Replacement).
     if (!global._mongoClientPromise) {
-        console.log('DATABASE_URL: ', DATABASE_URL);
-        client = new MongoClient(DATABASE_URL);
+        console.log('MONGODB_URI: ', MONGODB_URI);
+        client = new MongoClient(MONGODB_URI);
         global._mongoClientPromise = client.connect();
     }
     clientPromise = global._mongoClientPromise;
 } else {
     // In production mode, it's best to not use a global variable.
-    client = new MongoClient(DATABASE_URL);
+    client = new MongoClient(MONGODB_URI);
     clientPromise = client.connect();
 }
 
