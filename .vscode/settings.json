@@ -1,0 +1,13 @@
+{
+    "prettier.configPath": "./prettier.config.js",
+    "prettier.prettierPath": "./node_modules/prettier",
+    "cSpell.words": [
+        "callees",
+        "classname",
+        "clsx",
+        "hookform",
+        "ianvs",
+        "Lucide",
+        "NEXTAUTH"
+    ]
+}
