@@ -1,11 +1,10 @@
-import { siteConfig } from '@/config/site';
-
+import { homeConfig, siteConfig } from '@/config/site';
 import { fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
-
+import Header from '@/components/ui/Header';
 import { Toaster } from '@/components/ui/toaster';
-
 import { Analytics } from '@/components/analytics';
+import { SiteFooter } from '@/components/site-footer';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
 
@@ -30,11 +29,11 @@ export const metadata = {
     ],
     authors: [
         {
-            name: 'shadcn',
-            url: 'https://shadcn.com',
+            name: 'Sayed Ahmed',
+            url: 'https://github.com/sayeed205',
         },
     ],
-    creator: 'shadcn',
+    creator: 'Sayed Ahmed',
     themeColor: [
         { media: '(prefers-color-scheme: light)', color: 'white' },
         { media: '(prefers-color-scheme: dark)', color: 'black' },
@@ -52,7 +51,7 @@ export const metadata = {
         title: siteConfig.name,
         description: siteConfig.description,
         images: [`${siteConfig.url}/og.jpg`],
-        creator: '@shadcn',
+        creator: 'Sayed Ahmed',
     },
     icons: {
         icon: '/favicon.ico',
@@ -77,10 +76,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     defaultTheme="system"
                     enableSystem
                 >
+                    <Header items={homeConfig.homeNav} />
                     {children}
                     <Analytics />
                     <Toaster />
                     <TailwindIndicator />
+                    <SiteFooter />
                 </ThemeProvider>
             </body>
         </html>
