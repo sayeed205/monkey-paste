@@ -403,3 +403,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Sentry Auth Token
+.sentryclirc
